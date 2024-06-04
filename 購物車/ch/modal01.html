@@ -1,0 +1,53 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <script src="jquery-3.3.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+</head>
+<body>
+
+    <div class="container" style="margin-top:20px;">
+        <h2>互動視窗</h2>
+        <!-- 開啟互動視窗的按鈕 -->
+        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">
+            .NET 書籍
+        </button>
+
+        <!-- 互動視窗 -->
+        <div class="modal fade" id="myModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <!-- 互動視窗頁首 -->
+                    <div class="modal-header">
+                        <h3 class="modal-title">.NET 優質書籍</h3>
+                        <button type="button" class="close" data-dismiss="modal">×</button>
+                    </div>
+
+                    <!-- 互動視窗主體 -->
+                    <div class="modal-body">
+                        <img src="images/AEL019300.jpg" width="200" />
+                        <img src="images/AEL019800.jpg" width="200" />
+                        <div>
+                            作者連續榮獲十年MVP榮銜，致力於微軟技術的推廣已超過十多年，熱心於社群中分享所學。本書以實務教導、清晰的解說，讓您輕鬆地邁向 ASP.NET MVC與C#之路。
+                        </div>
+                    </div>
+
+                    <!-- 互動視窗頁尾 -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary">確定</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+</body>
+</html>

@@ -1,0 +1,74 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <script src="jquery-3.3.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <style>
+        img {
+            float: left;
+            width: 240px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container" style="margin-top:20px;">
+        <h3>碁峰優質好書</h3>
+        <!--折疊效果組件-->
+        <div id="accordion">
+            <!--卡片-->
+            <div class="card">
+                <div class="card-header" id="headingOne">
+                    <h5 class="mb-0">
+                        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            跟著實務學習ASP.NET MVC-第一次寫MVC就上手
+                        </button>
+                    </h5>
+                </div>
+                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                    <div class="card-body">
+                        <img src="images/AEL019800.jpg" />
+                        <br />本書由微軟MVP、微軟認證專家、資策會外聘講師與科技大學教師共同編著，著重於實務經驗操作、沒有艱澀的理論空談。讓初學者照本書範例從做中學，快速上手以至臻境。
+                    </div>
+                </div>
+            </div>
+            <!--卡片-->
+            <div class="card">
+                <div class="card-header" id="headingTwo">
+                    <h5 class="mb-0">
+                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            Visual C# 2017程式設計經典
+                        </button>
+                    </h5>
+                </div>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                    <div class="card-body">
+                        <img src="images/AEL019300.jpg" />
+                        <br />由微軟MVP、大學教師以及MCSD、MCPD認證專家共同編著，並由大學教授程式設計教師提供寶貴意見與審校，是一本適合大專院校教學，以及MTA、MCP、MCPD、MCSD認證課程的先修教材。內容豐富，範例操作與解說皆有圖例、分析與詳細說明，讓初學者學習完全無障礙。
+                    </div>
+                </div>
+            </div>
+            <!--卡片-->
+            <div class="card">
+                <div class="card-header" id="headingThree">
+                    <h5 class="mb-0">
+                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            C & C++程式設計經典
+                        </button>
+                    </h5>
+                </div>
+                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                    <div class="card-body">
+                        <img src="images/AEL020600.jpg" />
+                        <br />由微軟MVP、大學教師共同編著，並由大學教授程式設計教師提供寶貴意見與審校。範例淺顯易懂且具代表性與實用性，非常適合教學與自修，是一本C&C++程式設計的最佳入門進階書。書中介紹如何在Dev C++與Visual Studio 2017的環境下開發C&C++程式，並詳實告知在不同的開發環境下撰寫C&C++應注意的地方，以最輕鬆的方式學習C&C++程式設計。
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
