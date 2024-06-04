@@ -1,0 +1,166 @@
+為了在兩段影片之間進行切換並添加漸變效果，我們需要使用CSS和JavaScript來控制影片的透明度，以實現平滑過渡。以下是修改後的版本，包括如何在兩段影片之間切換並加入漸變效果。
+
+### HTML
+```html
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>影片片段背景</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="video-background">
+        <div class="video-foreground" id="video1">
+            <div id="player1"></div>
+        </div>
+        <div class="video-foreground" id="video2">
+            <div id="player2"></div>
+        </div>
+    </div>
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <script src="script.js"></script>
+</body>
+</html>
+```
+
+### CSS (styles.css)
+```css
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+}
+
+.video-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.video-foreground {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    transform: translate(-50%, -50%);
+    pointer-events: none; /* 禁用影片控制 */
+    opacity: 0;
+    transition: opacity 1s ease-in-out; /* 添加漸變效果 */
+}
+
+iframe {
+    width: 100vw;
+    height: 56.25vw; /* 16:9 aspect ratio */
+    min-height: 100vh;
+    min-width: 177.78vh; /* 16:9 aspect ratio */
+}
+```
+
+### JavaScript (script.js)
+```javascript
+var player1, player2;
+var startTime1 = 90;  // 第一段影片的開始時間（秒）
+var endTime1 = 150;   // 第一段影片的結束時間（秒）
+var startTime2 = 30;  // 第二段影片的開始時間（秒）
+var endTime2 = 90;    // 第二段影片的結束時間（秒）
+var activePlayer = 1; // 當前播放的影片編號
+
+function onYouTubeIframeAPIReady() {
+    player1 = new YT.Player('player1', {
+        height: '360',
+        width: '640',
+        videoId: '影片ID1', // 替換為第一段影片的ID
+        playerVars: {
+            'autoplay': 1,
+            'controls': 0,
+            'showinfo': 0,
+            'modestbranding': 1,
+            'loop': 1,
+            'mute': 1,
+            'start': startTime1,
+            'playlist': '影片ID1'
+        },
+        events: {
+            'onReady': onPlayerReady,
+            'onStateChange': onPlayerStateChange
+        }
+    });
+
+    player2 = new YT.Player('player2', {
+        height: '360',
+        width: '640',
+        videoId: '影片ID2', // 替換為第二段影片的ID
+        playerVars: {
+            'autoplay': 0,
+            'controls': 0,
+            'showinfo': 0,
+            'modestbranding': 1,
+            'loop': 1,
+            'mute': 1,
+            'start': startTime2,
+            'playlist': '影片ID2'
+        },
+        events: {
+            'onReady': onPlayerReady,
+            'onStateChange': onPlayerStateChange
+        }
+    });
+}
+
+function onPlayerReady(event) {
+    if (event.target.getIframe().id === 'player1') {
+        event.target.playVideo();
+        document.getElementById('video1').style.opacity = 1; // 顯示第一段影片
+    }
+}
+
+function onPlayerStateChange(event) {
+    var currentTime, endTime, nextPlayer, currentPlayer;
+
+    if (event.data == YT.PlayerState.PLAYING) {
+        if (event.target.getIframe().id === 'player1') {
+            currentPlayer = player1;
+            nextPlayer = player2;
+            currentTime = player1.getCurrentTime();
+            endTime = endTime1;
+        } else {
+            currentPlayer = player2;
+            nextPlayer = player1;
+            currentTime = player2.getCurrentTime();
+            endTime = endTime2;
+        }
+
+        var checkTime = function() {
+            if (currentTime >= endTime) {
+                nextPlayer.seekTo(startTime2); // 跳轉到第二段影片的開始時間
+                nextPlayer.playVideo();
+                document.getElementById('video2').style.opacity = 1; // 顯示第二段影片
+                document.getElementById('video1').style.opacity = 0; // 隱藏第一段影片
+                currentPlayer.stopVideo(); // 停止第一段影片
+                activePlayer = activePlayer === 1 ? 2 : 1;
+            } else {
+                currentTime = currentPlayer.getCurrentTime();
+                setTimeout(checkTime, 1000); // 每秒檢查一次時間
+            }
+        };
+        checkTime(); // 開始檢查時間
+    }
+}
+```
+
+### 解析
+
+1. **HTML**：我們在HTML中添加了兩個`<div>`，分別包含兩個YouTube播放器。
+2. **CSS**：我們使用CSS來控制影片的透明度，並添加了`transition`屬性來實現漸變效果。
+3. **JavaScript**：我們初始化了兩個YouTube播放器，並在`onPlayerReady`和`onPlayerStateChange`事件中控制影片的切換和漸變效果。
+    - 當第一段影片播放完畢時，跳轉到第二段影片的開始時間並播放，並顯示第二段影片，同時隱藏第一段影片。
+    - 我們使用`setTimeout`每秒檢查一次影片的當前播放時間，以確保影片在指定的時間段內循環播放。
+
+這樣就可以在兩段影片之間進行平滑過渡，並實現影片的循環播放。如果有任何問題或需要進一步調整，請告訴我。

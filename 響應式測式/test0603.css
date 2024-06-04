@@ -1,0 +1,153 @@
+/* Reset some basic styles for better cross-browser consistency */
+body,
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+  padding: 0;
+}
+
+/* Basic body styles */
+body {
+  font-family: Arial, sans-serif;
+}
+
+/* Header styles */
+.header {
+  text-align: center;
+  padding: 20px;
+  background-color: #333;
+  color: white;
+  font-size: 36px;
+}
+
+/* Banner styles */
+.banner {
+  position: relative;
+  text-align: center;
+  color: white;
+}
+
+.banner img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+}
+
+.banner .text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 48px;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 20px;
+  border-radius: 10px;
+}
+
+/* Content styles */
+.content {
+  padding: 20px;
+  font-size: 1.2rem;
+}
+
+.card {
+  background-color: white;
+  border: 1px solid #ddd;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Footer styles */
+.footer {
+  text-align: center;
+  padding: 20px;
+  background-color: #333;
+  color: white;
+}
+
+/* Sidebar styles */
+.sidebar-toggle {
+  display: none;
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  font-size: 24px;
+  background-color: rgba(51, 31, 223, 0.3);
+  color: white;
+  padding: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.sidebar {
+  position: fixed;
+  right: 10px;
+  top: 70%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar a {
+  background-color: rgba(51, 31, 223, 0.3);
+  color: white;
+  padding: 10px;
+  margin: 5px 0;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 4px;
+}
+
+.sidebar a:hover {
+  background-color: #036b1a;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+  .card {
+    width: 100%;
+  }
+  .header {
+    font-size: 30px;
+  }
+  .content {
+    font-size: 1.5rem;
+  }
+  .banner img {
+    height: 150px;
+  }
+  .banner .text {
+    font-size: 24px;
+  }
+  .footer {
+    font-size: 16px;
+  }
+  .sidebar {
+    display: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 200px;
+    height: 100%;
+    background-color: rgba(51, 31, 223, 0.9);
+    flex-direction: column;
+    transform: translateX(100%);
+    transition: transform 0.3s ease-in-out;
+  }
+  .sidebar a {
+    padding: 15px;
+    margin: 0;
+    border-bottom: 1px solid white;
+  }
+  .sidebar-toggle {
+    display: block;
+  }
+  .sidebar.show {
+    transform: translateX(0);
+  }
+}
